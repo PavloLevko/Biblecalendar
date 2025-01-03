@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Графік Читання Біблії</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://bible-eternalgospel.com/wp-content/uploads/2020/12/bibilya-2048x1536.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            padding: 50px 20px;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .book-block {
+            background: #2c2c2c;
+            border-radius: 10px;
+            margin: 15px 0;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .book-title {
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .chapters {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .chapter {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            background-color: #555;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .chapter.read {
+            background-color: #4caf50;
+        }
+
+        .chapter.current {
+            background-color: #f39c12;
+        }
+
+        .join-section {
+            text-align: center;
+            background: rgba(28, 28, 28, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .join-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .join-section p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .join-section a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #4caf50;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        .join-section a:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>Графік Читання Біблії 2025</div>
+</header>
+
+<div class="container">
+    <!-- Євангеліє від Луки -->
+    <div class="book-block">
+        <div class="book-title">Євангеліє від Луки</div>
+        <div class="chapters" id="luke-chapters">
+            <!-- Порожні розділи будуть генеруватися через JavaScript -->
+        </div>
+    </div>
+
+    <!-- Блок приєднатися -->
+    <div class="join-section">
+        <h2>Приєднуйся до нашого графіку!</h2>
+        <p>Виконуй цей графік щодня та діліться своїми досягненнями з іншими! Почни з сьогоднішнього дня!</p>
+        <a href="https://t.me/+5oO7XA8OWqtkMmNi" target="_blank">Приєднатися до нашого Telegram</a>
+    </div>
+</div>
+
+<script>
+    const chaptersLuke = 24; // Кількість розділів в Євангелії від Луки
+    const startDate = new Date(2025, 0, 1); // Початок графіку читання
+
+    // Для того, щоб 3 січня було 11 розділ (зміщуємо на 10 днів)
+    const offsetDays = 10;
+
+    // Отримуємо поточну дату
+    const currentDate = new Date();
+    const diffTime = currentDate - startDate;
+    const currentDay = Math.floor(diffTime / (1000 * 3600 * 24)) + 1 + offsetDays; // Визначаємо поточний день (1 січня - день 1, але додаємо зміщення для коректного відображення)
+
+    // Генеруємо блоки для розділів
+    const lukeChaptersContainer = document.getElementById('luke-chapters');
+    for (let i = 1; i <= chaptersLuke; i++) {
+        const chapterDiv = document.createElement('div');
+        chapterDiv.classList.add('chapter');
+        chapterDiv.textContent = i;
+
+        // Встановлюємо клас для поточного дня та наступного
+        if (i < currentDay) {
+            chapterDiv.classList.add('read'); // Кольор для вже прочитаного
+        } else if (i === currentDay) {
+            chapterDiv.classList.add('current'); // Кольор для поточного дня
+        }
+
+        lukeChaptersContainer.appendChild(chapterDiv);
+    }
+</script>
+
+</body>
+</html>
